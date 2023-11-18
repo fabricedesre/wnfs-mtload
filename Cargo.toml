@@ -1,0 +1,11 @@
+[package]
+edition = "2021"
+name = "wnfs-mtload"
+version = "0.1.0"
+
+[dependencies]
+chrono = "0.4"
+futures = "0.3"
+rand = "0.8"
+tokio = {version = "1.0", features = ["full"]}
+wnfs = {git = "https://github.com/wnfs-wg/rs-wnfs.git", branch = "blockstore-send"}
