@@ -15,8 +15,8 @@ async fn create_file_in_dir(
     mut forest: HamtForest,
     store: MemoryBlockStore,
     content: Vec<u8>,
-) -> Arc<PrivateFile> {
-    PrivateFile::with_content_rc(
+) -> (Arc<PrivateFile>, HamtForest) {
+    let file = PrivateFile::with_content_rc(
         &forest.empty_name(),
         Utc::now(),
         content,
@@ -25,7 +25,9 @@ async fn create_file_in_dir(
         &mut OsRng,
     )
     .await
-    .unwrap()
+    .unwrap();
+
+    (file, forest)
 }
 
 async fn get_file(
@@ -65,8 +67,14 @@ async fn main() {
 
     let results = join_all(handles).await;
 
+    // Merge the forests
+    for (_file, file_forest) in results.iter().flatten() {
+        forest = forest.merge(&file_forest, &store).await.unwrap();
+    }
+
+
     // Add the files to the root directory.
-    for (i, file) in results.into_iter().flatten().enumerate() {
+    for (i, (file, _file_forest)) in results.into_iter().flatten().enumerate() {
         let dest = root
             .open_file_mut(
                 &[format!("file_{}.json", i)],
