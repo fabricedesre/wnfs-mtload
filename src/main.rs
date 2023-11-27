@@ -38,6 +38,8 @@ async fn create_file_in_dir(
     Ok(())
 }
 
+static FILES_COUNT: usize = 100;
+
 #[tokio::main(flavor = "multi_thread")]
 async fn main() {
     let store = MemoryBlockStore::default();
@@ -47,17 +49,33 @@ async fn main() {
 
     let mut handles = vec![];
 
-    for i in 0..100 {
+    for i in 0..FILES_COUNT {
         let content = format!("{{ \"index\": {}, \"random\": {} }}", i, rng.gen::<f64>());
 
         handles.push(tokio::spawn(create_file_in_dir(
             Arc::clone(&root),
             forest.clone(),
-            store,
+            store.clone(),
             format!("file_{}.json", i),
             content.as_bytes().to_vec(),
         )))
     }
 
     let results = join_all(handles).await;
+    let success_count =
+        results.into_iter().fold(
+            0,
+            |current, item| if item.is_ok() { current + 1 } else { current },
+        );
+    println!(
+        "Successfully added {} files out of {}",
+        success_count, FILES_COUNT
+    );
+
+    // List files from the directory.
+    let files = root.ls(&[], true, &forest, &store).await.unwrap();
+    println!(">> ls /");
+    for (name, _meta) in files {
+        println!("{}", name);
+    }
 }

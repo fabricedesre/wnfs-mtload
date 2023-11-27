@@ -1667,7 +1667,7 @@ checksum = "ed94fce61571a4006852b7389a063ab983c02eb1bb37b47f8272ce92d06d9538"
 [[package]]
 name = "wnfs"
 version = "0.1.26"
-source = "git+https://github.com/wnfs-wg/rs-wnfs.git?branch=blockstore-send#569e1ca934288b689aade1a3c3ec66ef7f6a471b"
+source = "git+https://github.com/wnfs-wg/rs-wnfs.git?branch=blockstore-send#a8ea220a34fabb6ed667976855e49a753079f8b3"
 dependencies = [
  "aes-kw",
  "anyhow",
@@ -1702,7 +1702,7 @@ dependencies = [
 [[package]]
 name = "wnfs-common"
 version = "0.1.25"
-source = "git+https://github.com/wnfs-wg/rs-wnfs.git?branch=blockstore-send#569e1ca934288b689aade1a3c3ec66ef7f6a471b"
+source = "git+https://github.com/wnfs-wg/rs-wnfs.git?branch=blockstore-send#a8ea220a34fabb6ed667976855e49a753079f8b3"
 dependencies = [
  "anyhow",
  "async-once-cell",
@@ -1723,7 +1723,7 @@ dependencies = [
 [[package]]
 name = "wnfs-hamt"
 version = "0.1.25"
-source = "git+https://github.com/wnfs-wg/rs-wnfs.git?branch=blockstore-send#569e1ca934288b689aade1a3c3ec66ef7f6a471b"
+source = "git+https://github.com/wnfs-wg/rs-wnfs.git?branch=blockstore-send#a8ea220a34fabb6ed667976855e49a753079f8b3"
 dependencies = [
  "anyhow",
  "async-once-cell",
@@ -1761,7 +1761,7 @@ dependencies = [
 [[package]]
 name = "wnfs-nameaccumulator"
 version = "0.1.25"
-source = "git+https://github.com/wnfs-wg/rs-wnfs.git?branch=blockstore-send#569e1ca934288b689aade1a3c3ec66ef7f6a471b"
+source = "git+https://github.com/wnfs-wg/rs-wnfs.git?branch=blockstore-send#a8ea220a34fabb6ed667976855e49a753079f8b3"
 dependencies = [
  "anyhow",
  "blake3",
