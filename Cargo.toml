@@ -4,6 +4,7 @@ name = "wnfs-mtload"
 version = "0.1.0"
 
 [dependencies]
+anyhow = "1.0"
 chrono = "0.4"
 futures = "0.3"
 rand = "0.8"
